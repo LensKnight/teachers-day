@@ -3,23 +3,80 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background-color: #0d1117;
-  background-image: radial-gradient(circle at center, #1f293d 0%, #0d1117 100%);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
   font-family: 'Playfair Display', serif;
   perspective: 1000px;
+  overflow: hidden;
+  position: relative;
+  background-color: #0b0f17;
 }
 
+/* 1. ANIMATED BACKGROUND MESH & GRID */
+body::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(239, 68, 68, 0.12) 0%, transparent 40%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  animation: bgRotate 25s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes bgRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(3deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* 2. FLOATING AMBIENT ORBS (BACKGROUND ELEMENTS) */
+.bg-element {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 300px;
+  height: 300px;
+  background: rgba(99, 102, 241, 0.2);
+  top: 10%;
+  left: 15%;
+  animation: floatOrb 8s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 350px;
+  height: 350px;
+  background: rgba(220, 38, 38, 0.15);
+  bottom: 10%;
+  right: 15%;
+  animation: floatOrb 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 30px) scale(1.15); }
+}
+
+/* 3. CARD CONTAINER SETUP */
 .card-wrapper {
   width: 100%;
   max-width: 480px;
   height: 650px;
   position: relative;
   cursor: pointer;
+  z-index: 2;
 }
 
 .card-inner {
@@ -43,7 +100,7 @@ body {
   border: 1px solid #dcd4c7;
   border-radius: 8px;
   padding: 35px 25px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -214,19 +271,9 @@ body {
 }
 
 @keyframes stampSlam {
-  0% {
-    opacity: 0;
-    transform: rotate(-12deg) scale(3);
-  }
-  80% {
-    opacity: 1;
-    transform: rotate(-12deg) scale(0.9);
-  }
-  100% {
-    opacity: 0.9;
-    transform: rotate(-12deg) scale(1);
-    box-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
-  }
+  0% { opacity: 0; transform: rotate(-12deg) scale(3); }
+  80% { opacity: 1; transform: rotate(-12deg) scale(0.9); }
+  100% { opacity: 0.9; transform: rotate(-12deg) scale(1); box-shadow: 0 0 10px rgba(220, 38, 38, 0.2); }
 }
 
 .floral-divider {
