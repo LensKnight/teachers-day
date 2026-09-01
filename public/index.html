@@ -75,7 +75,7 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const catId = parseInt(params.get('cat')) || 2;
+    const catId = parseInt(params.get('cat')) || 1;
 
     const data = {
       1: {
@@ -111,7 +111,6 @@
         ],
         remark: "If this teacher takes 1 day off, the whole school schedule crashes."
       },
-
       4: {
         title: "THE SPOTLIGHT",
         quote: "“Some people naturally become part of the moment.<br>For the presence, personality and energy that make you stand out and leave your own mark wherever you go.”",
@@ -146,7 +145,7 @@
         remark: "Brings pure meditation energy into a classroom full of chaotic animals."
       },
       7: {
-        title: "THE Mirror",
+        title: "THE MIRROR",
         quote: "“Sometimes, all you need is someone who tells it like it is.<br>For the perspective that cuts through the excuses, clears the confusion and reminds us to see things for what they really are.”",
         metrics: [
           { name: "Excuse Destruction Power", grade: "100%" },
@@ -157,7 +156,7 @@
         remark: "Cuts through fake excuses like a hot knife through butter. Zero mercy!"
       },
       8: {
-        title: "THE LIVING PULSE", // Principal
+        title: "THE LIVING PULSE",
         quote: "“Serving as the living pulse of our school—bringing warmth, vitality, and genuine care to every hallway. Through constant encouragement, open doors, and an approachable spirit, you turn an academic institution into a thriving, supportive family where every student and teacher feels valued, heard, and deeply connected.”",
         metrics: [
           { name: "Institutional Leadership", grade: "Exemplary" },
@@ -168,7 +167,7 @@
         remark: "The guiding pillar of our institution—fostering excellence, unity, and shared values."
       },
       9: {
-        title: "THE SAFE HARBOR", 
+        title: "THE SAFE HARBOR",
         quote: "“Your warm presence, open heart, and genuine kindness make our school feel safe and understood. With an ever-listening ear, gentle encouragement, and a comforting smile, you offer a judgment-free space where every student feels seen, heard, and truly valued. Thank you for being the calm, compassionate heart our community relies on every day.”",
         metrics: [
           { name: "Comforting Smile Aura", grade: "100%" },
@@ -179,7 +178,7 @@
         remark: "Always providing peace, warmth, and reassurance when things get stressful."
       },
       10: {
-        title: "COMPASS OF VALOR", 
+        title: "COMPASS OF VALOR",
         quote: "“You have been leading us with unmatched discipline, strength, and unwavering dedication. Beyond the drills, parades, and uniform, you teach us resilience, honor, and true patriotism. Thank you for pushing us past our limits, standing by us as a constant pillar of support, and inspiring us to march forward with pride and integrity every single day.”",
         metrics: [
           { name: "Discipline & Integrity", grade: "100 / 100" },
@@ -191,7 +190,7 @@
       }
     };
 
-    const current = data[catId] || data[9];
+    const current = data[catId] || data[1];
 
     // Front
     document.getElementById('cat-title-front').innerText = current.title;
