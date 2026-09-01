@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confidential Teacher Evaluation | Teachers' Day</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="card-wrapper" id="cardWrapper" onclick="flipCard()">
+    <div class="card-inner">
+      
+      <!-- FRONT FACE -->
+      <div class="card-face card-front">
+        <div>
+          <div class="board-header">CONFIDENTIAL STUDENT BOARD ASSESSMENT</div>
+          <div class="category-header" id="cat-title-front">LOADING...</div>
+        </div>
+
+        <div class="quote-container">
+          <p class="quote-text" id="cat-quote">Loading quote...</p>
+          <div class="wish-text">Wishing You a Happy Teachers’ Day!</div>
+        </div>
+
+        <div>
+          <div class="flip-prompt">🔍 TAP TO UNLOCK REPORT CARD</div>
+          <div class="footer-sig" style="margin-top: 12px;">— CLASSROOM BOARD OF EVALUATION —</div>
+        </div>
+      </div>
+
+      <!-- BACK FACE (FUNNY REPORT CARD) -->
+      <div class="card-face card-back">
+        <div class="stamp">OFFICIALLY PASSED</div>
+
+        <div>
+          <div class="board-header">CONFIDENTIAL PERFORMANCE METRICS</div>
+          <div class="report-header" id="cat-title-back">REPORT CARD</div>
+        </div>
+
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th style="text-align: left;">UNOFFICIAL METRIC</th>
+              <th style="text-align: right;">SCORE</th>
+            </tr>
+          </thead>
+          <tbody id="report-body">
+            <!-- Dynamic Funny Rows -->
+          </tbody>
+        </table>
+
+        <div class="remark-box">
+          <div class="remark-title">CHIEF MONITOR'S REMARK</div>
+          <div class="remark-text" id="remark-text">Loading remark...</div>
+        </div>
+
+        <div>
+          <div class="floral-divider">
+            <svg viewBox="0 0 100 40" fill="none" stroke="#2b2b2b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M50,25 C45,15 35,15 35,22 C35,28 50,32 50,32 C50,32 65,28 65,22 C65,15 55,15 50,25 Z"/>
+              <path d="M35,22 C25,18 20,25 25,30 C30,34 40,30 50,32"/>
+              <path d="M65,22 C75,18 80,25 75,30 C70,34 60,30 50,32"/>
+              <path d="M50,32 L50,38"/>
+              <path d="M40,28 C30,35 20,32 15,25"/>
+              <path d="M60,28 C70,35 80,32 85,25"/>
+            </svg>
+          </div>
+          <div class="footer-sig" style="margin-top: 6px;">— HIGH COUNCIL OF BACKBENCHERS —</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const catId = parseInt(params.get('cat')) || 2;
+
+    const data = {
+      1: {
+        title: "THE FUN",
+        quote: "“Some lessons come with notes.<br>Some come with moments that make the whole class smile.<br>For turning ordinary classroom moments into memories worth remembering.”",
+        metrics: [
+          { name: "Stand-up Comedy Skill", grade: "A++" },
+          { name: "Sleeping Student Recovery", grade: "100%" },
+          { name: "Pun Quality", grade: "Dangerously High" },
+          { name: "Attendance Booster Factor", grade: "Maximum" }
+        ],
+        remark: "Purity rating: 100%. Guaranteed to turn even Monday 1st period into fun."
+      },
+      2: {
+        title: "THE ALLY",
+        quote: "“A great teacher doesn't just teach — they make you feel heard.<br>For the conversations, encouragement and little moments that make the classroom feel a little more welcoming.”",
+        metrics: [
+          { name: "Secret Keeping Capacity", grade: "Infinite" },
+          { name: "Homework Deadline Mercy", grade: "Grade A+" },
+          { name: "Vibe Pass Status", grade: "Verified 10/10" },
+          { name: "Safe Haven Rating", grade: "Absolute" }
+        ],
+        remark: "Officially voted as the most approachable mentor in the corridor."
+      },
+      3: {
+        title: "THE GATEKEEPER",
+        quote: "“Every system needs someone who keeps things moving.<br>The schedules, the duties, the names and the never-ending list of responsibilities — somehow, it all finds its place.”",
+        metrics: [
+          { name: "Timetable Tetris Master", grade: "Pro Level" },
+          { name: "Proxy Class Detection", grade: "100%" },
+          { name: "Multi-Tasking Capability", grade: "Octopus Mode" },
+          { name: "School System Control", grade: "A++" }
+        ],
+        remark: "If this teacher takes 1 day off, the whole school schedule crashes."
+      },
+
+      4: {
+        title: "THE SPOTLIGHT",
+        quote: "“Some people naturally become part of the moment.<br>For the presence, personality and energy that make you stand out and leave your own mark wherever you go.”",
+        metrics: [
+          { name: "Corridor Fashion Aura", grade: "+10,000" },
+          { name: "Main Character Energy", grade: "100%" },
+          { name: "Classroom Entry Flair", grade: "Iconic" },
+          { name: "Photogenic Rating", grade: "Grade A+" }
+        ],
+        remark: "Does not need a stage. Wherever they walk, the spotlight follows!"
+      },
+      5: {
+        title: "THE ORACLE",
+        quote: "“Questions change. Curiosity doesn't.<br>And somehow, there always seems to be an answer, an explanation, or one more way of looking at things.”",
+        metrics: [
+          { name: "Human Wikipedia Index", grade: "100%" },
+          { name: "Out-of-Syllabus Defense", grade: "Unbreakable" },
+          { name: "Speed of Answering", grade: "< 0.5s" },
+          { name: "Logic Level", grade: "A++" }
+        ],
+        remark: "Google searches this teacher when it runs out of answers!"
+      },
+      6: {
+        title: "THE ZEN",
+        quote: "“When everything around gets a little chaotic, some people bring their own calm with them.<br>For the patience, composure and quiet confidence that make every situation feel a little easier.”",
+        metrics: [
+          { name: "Noise Tolerance Limit", grade: "Infinite" },
+          { name: "BP During Mass Bunk", grade: "120/80 (Calm)" },
+          { name: "Soothing Voice Level", grade: "ASMR Grade" },
+          { name: "Stress Elimination", grade: "100%" }
+        ],
+        remark: "Brings pure meditation energy into a classroom full of chaotic animals."
+      },
+      7: {
+        title: "THE Mirror",
+        quote: "“Sometimes, all you need is someone who tells it like it is.<br>For the perspective that cuts through the excuses, clears the confusion and reminds us to see things for what they really are.”",
+        metrics: [
+          { name: "Excuse Destruction Power", grade: "100%" },
+          { name: "Nonsense Filter Status", grade: "Active 24/7" },
+          { name: "Sarcasm Accuracy", grade: "Deadly A+" },
+          { name: "Truth Delivery Speed", grade: "Instant" }
+        ],
+        remark: "Cuts through fake excuses like a hot knife through butter. Zero mercy!"
+      },
+      8: {
+        title: "THE LIVING PULSE", // Principal
+        quote: "“Serving as the living pulse of our school—bringing warmth, vitality, and genuine care to every hallway. Through constant encouragement, open doors, and an approachable spirit, you turn an academic institution into a thriving, supportive family where every student and teacher feels valued, heard, and deeply connected.”",
+        metrics: [
+          { name: "Institutional Leadership", grade: "Exemplary" },
+          { name: "Vision & Guidance", grade: "100 / 100" },
+          { name: "Student & Faculty Welfare", grade: "Grade A+" },
+          { name: "Institutional Harmony", grade: "Absolute" }
+        ],
+        remark: "The guiding pillar of our institution—fostering excellence, unity, and shared values."
+      },
+      9: {
+        title: "THE SAFE HARBOR", 
+        quote: "“Your warm presence, open heart, and genuine kindness make our school feel safe and understood. With an ever-listening ear, gentle encouragement, and a comforting smile, you offer a judgment-free space where every student feels seen, heard, and truly valued. Thank you for being the calm, compassionate heart our community relies on every day.”",
+        metrics: [
+          { name: "Comforting Smile Aura", grade: "100%" },
+          { name: "Judgment-Free Zone", grade: "Absolute" },
+          { name: "Empathy Level", grade: "Infinite" },
+          { name: "Listening Capacity", grade: "A++" }
+        ],
+        remark: "Always providing peace, warmth, and reassurance when things get stressful."
+      },
+      10: {
+        title: "COMPASS OF VALOR", 
+        quote: "“You have been leading us with unmatched discipline, strength, and unwavering dedication. Beyond the drills, parades, and uniform, you teach us resilience, honor, and true patriotism. Thank you for pushing us past our limits, standing by us as a constant pillar of support, and inspiring us to march forward with pride and integrity every single day.”",
+        metrics: [
+          { name: "Discipline & Integrity", grade: "100 / 100" },
+          { name: "Parade & Drill Precision", grade: "Flawless" },
+          { name: "Resilience Booster", grade: "Grade A+" },
+          { name: "Patriotism Index", grade: "Maximum" }
+        ],
+        remark: "Pushes us past limits and teaches us to march forward with pride!"
+      }
+    };
+
+    const current = data[catId] || data[9];
+
+    // Front
+    document.getElementById('cat-title-front').innerText = current.title;
+    document.getElementById('cat-quote').innerHTML = current.quote;
+
+    // Back
+    document.getElementById('cat-title-back').innerText = current.title;
+    document.getElementById('remark-text').innerText = `"${current.remark}"`;
+    
+    const tbody = document.getElementById('report-body');
+    tbody.innerHTML = current.metrics.map(m => `
+      <tr>
+        <td>${m.name}</td>
+        <td class="grade">${m.grade}</td>
+      </tr>
+    `).join('');
+
+    function flipCard() {
+      document.getElementById('cardWrapper').classList.toggle('flipped');
+    }
+  </script>
+</body>
+</html>
